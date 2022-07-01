@@ -218,6 +218,12 @@ void SatellitesDialog::createDialogContent()
 	connectDoubleProperty(ui->maxAltitude,        "Satellites.maxVFAltitude");
 	enableMinMaxAltitude(ui->altitudeCheckBox->isChecked());
 	connect(ui->altitudeCheckBox, SIGNAL(clicked(bool)), this, SLOT(enableMinMaxAltitude(bool)));
+	// Logic sub-group: Visual filter / Magnitude range
+	connectBoolProperty(ui->magnitudeCheckBox,    "Satellites.flagVFMagnitude");
+	connectDoubleProperty(ui->minMagnitude,       "Satellites.minVFMagnitude");
+	connectDoubleProperty(ui->maxMagnitude,       "Satellites.maxVFMagnitude");
+	enableMinMaxMagnitude(ui->magnitudeCheckBox->isChecked());
+	connect(ui->magnitudeCheckBox, SIGNAL(clicked(bool)), this, SLOT(enableMinMaxMagnitude(bool)));
 
 	connect(ui->restoreDefaultsButton, SIGNAL(clicked()), this, SLOT(restoreDefaults()));
 	connect(ui->saveSettingsButton,    SIGNAL(clicked()), this, SLOT(saveSettings()));
@@ -329,6 +335,12 @@ void SatellitesDialog::enableMinMaxAltitude(bool state)
 {
 	ui->minAltitude->setEnabled(state);
 	ui->maxAltitude->setEnabled(state);
+}
+
+void SatellitesDialog::enableMinMaxMagnitude(bool state)
+{
+	ui->minMagnitude->setEnabled(state);
+	ui->maxMagnitude->setEnabled(state);
 }
 
 void SatellitesDialog::handleOrbitLinesGroup(bool state)
@@ -468,6 +480,7 @@ void SatellitesDialog::filterListByGroup(int index)
 		{ "[undisplayed]",	SatNotDisplayed },
 		{ "[newlyadded]",	SatNew },
 		{ "[orbiterror]",	SatError },
+		{ "[reentry]",		SatReentry },
 		{ "[smallsize]",	SatSmallSize },
 		{ "[mediumsize]",	SatMediumSize },
 		{ "[largesize]",	SatLargeSize },
@@ -511,7 +524,7 @@ void SatellitesDialog::filterListByGroup(int index)
 void SatellitesDialog::updateFilteredSatellitesList()
 {
 	QString groupId = ui->groupFilterCombo->currentData(Qt::UserRole).toString();
-	if (groupId == "[outdatedTLE]" || groupId == "[custom]" || groupId == "[communication]")
+	if (groupId == "[outdatedTLE]" || groupId == "[custom]" || groupId == "[communication]" || groupId == "[reentry]")
 	{
 		filterListByGroup(ui->groupFilterCombo->currentIndex());
 	}
@@ -1101,6 +1114,7 @@ void SatellitesDialog::populateFilterMenu()
 
 	// Add special groups - their IDs deliberately use JSON-incompatible chars.
 	ui->groupFilterCombo->insertItem(0, q_("[orbit calculation error]"), QVariant("[orbiterror]"));
+	ui->groupFilterCombo->insertItem(0, q_("[atmospheric entry]"), QVariant("[reentry]"));
 	ui->groupFilterCombo->insertItem(0, q_("[all newly added]"), QVariant("[newlyadded]"));
 	ui->groupFilterCombo->insertItem(0, q_("[all not displayed]"), QVariant("[undisplayed]"));
 	ui->groupFilterCombo->insertItem(0, q_("[all displayed]"), QVariant("[displayed]"));
@@ -1159,6 +1173,8 @@ void SatellitesDialog::populateInfo()
 	ui->orbitSegmentsSpin->setToolTip(QString("<p>%1. %2: %3..%4</p>").arg(q_("Number of segments: number of segments used to draw the line"), vr, QString::number(ui->orbitSegmentsSpin->minimum()), QString::number(ui->orbitSegmentsSpin->maximum())));
 	ui->orbitDurationSpin->setToolTip(QString("<p>%1. %2: %3..%4 %5</p>").arg(q_("Segment length: duration of a single segment in seconds"), vr, QString::number(ui->orbitDurationSpin->minimum()), QString::number(ui->orbitDurationSpin->maximum()), s));
 	ui->orbitFadeSpin->setToolTip(QString("<p>%1. %2: %3..%4</p>").arg(q_("Fade length: number of segments used to draw each end of the line"), vr, QString::number(ui->orbitFadeSpin->minimum()), QString::number(ui->orbitFadeSpin->maximum())));
+	ui->minMagnitude->setToolTip(QString("%1: %2..%3").arg(vr, QString::number(ui->minMagnitude->minimum(), 'f', 2), QString::number(ui->minMagnitude->maximum(), 'f', 2)));
+	ui->maxMagnitude->setToolTip(QString("%1: %2..%3").arg(vr, QString::number(ui->maxMagnitude->minimum(), 'f', 2), QString::number(ui->maxMagnitude->maximum(), 'f', 2)));
 }
 
 void SatellitesDialog::populateSourcesList()

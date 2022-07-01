@@ -865,6 +865,9 @@ void Satellites::loadSettings()
 	setFlagVFAltitude(conf->value("vf_altitude_flag", false).toBool());
 	setMinVFAltitude(conf->value("vf_altitude_min", 200.).toDouble());
 	setMaxVFAltitude(conf->value("vf_altitude_max", 500.).toDouble());
+	setFlagVFMagnitude(conf->value("vf_magnitude_flag", false).toBool());
+	setMinVFMagnitude(conf->value("vf_magnitude_min", 8.).toDouble());
+	setMaxVFMagnitude(conf->value("vf_magnitude_max", -8.).toDouble());
 
 	// custom filter
 	setFlagCFKnownStdMagnitude(conf->value("cf_magnitude_flag", false).toBool());
@@ -955,6 +958,9 @@ void Satellites::saveSettingsToConfig()
 	conf->setValue("vf_altitude_flag", getFlagVFAltitude());
 	conf->setValue("vf_altitude_min", getMinVFAltitude());
 	conf->setValue("vf_altitude_max", getMaxVFAltitude());
+	conf->setValue("vf_magnitude_flag", getFlagVFMagnitude());
+	conf->setValue("vf_magnitude_min", getMinVFMagnitude());
+	conf->setValue("vf_magnitude_max", getMaxVFMagnitude());
 
 	// custom filter
 	conf->setValue("cf_magnitude_flag", getFlagCFKnownStdMagnitude());
@@ -1963,6 +1969,27 @@ void Satellites::setMaxVFAltitude(double v)
 {
 	Satellite::maxVFAltitude = v;
 	emit maxVFAltitudeChanged(v);
+}
+
+void Satellites::setFlagVFMagnitude(bool b)
+{
+	if (Satellite::flagVFMagnitude != b)
+	{
+		Satellite::flagVFMagnitude = b;
+		emit flagVFMagnitudeChanged(b);
+	}
+}
+
+void Satellites::setMinVFMagnitude(double v)
+{
+	Satellite::minVFMagnitude = v;
+	emit minVFMagnitudeChanged(v);
+}
+
+void Satellites::setMaxVFMagnitude(double v)
+{
+	Satellite::maxVFMagnitude = v;
+	emit maxVFMagnitudeChanged(v);
 }
 
 void Satellites::setFlagCFEccentricity(bool b)
@@ -3496,12 +3523,6 @@ void Satellites::translations()
 	// TRANSLATORS: Satellite name: China's space station name (with name of base module)
 	N_("TIANGONG (TIANHE)");
 
-	// Satellites visibility
-	N_("The satellite and the observer are in sunlight");
-	N_("The satellite is visible");
-	N_("The satellite is eclipsed");
-	N_("The satellite is not visible");
-
 	// Special terms for communications
 	// TRANSLATORS: An uplink (UL or U/L) is the link from a ground station to a satellite
 	N_("uplink");
@@ -3511,6 +3532,12 @@ void Satellites::translations()
 	N_("beacon");
 	// TRANSLATORS: Telemetry is the collection of measurements or other data at satellites and their automatic transmission to receiving equipment (telecommunication) for monitoring
 	N_("telemetry");
+	// TRANSLATORS: The channel for transmission of video data
+	N_("video");
+	// TRANSLATORS: The broadband is wide bandwidth data transmission which transports multiple signals at a wide range of frequencies
+	N_("broadband");
+	// TRANSLATORS: The channel for transmission of commands
+	N_("command");
 
 #endif
 }

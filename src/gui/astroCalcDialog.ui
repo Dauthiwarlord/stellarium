@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>766</width>
+    <width>764</width>
     <height>447</height>
    </rect>
   </property>
@@ -83,15 +83,6 @@
              </color>
             </brush>
            </colorrole>
-           <colorrole role="Window">
-            <brush brushstyle="SolidPattern">
-             <color alpha="255">
-              <red>239</red>
-              <green>240</green>
-              <blue>241</blue>
-             </color>
-            </brush>
-           </colorrole>
           </active>
           <inactive>
            <colorrole role="Dark">
@@ -103,15 +94,6 @@
              </color>
             </brush>
            </colorrole>
-           <colorrole role="Window">
-            <brush brushstyle="SolidPattern">
-             <color alpha="255">
-              <red>239</red>
-              <green>240</green>
-              <blue>241</blue>
-             </color>
-            </brush>
-           </colorrole>
           </inactive>
           <disabled>
            <colorrole role="Dark">
@@ -120,15 +102,6 @@
               <red>119</red>
               <green>120</green>
               <blue>120</blue>
-             </color>
-            </brush>
-           </colorrole>
-           <colorrole role="Window">
-            <brush brushstyle="SolidPattern">
-             <color alpha="255">
-              <red>239</red>
-              <green>240</green>
-              <blue>241</blue>
              </color>
             </brush>
            </colorrole>
@@ -1163,6 +1136,9 @@
             <property name="alignment">
              <set>Qt::AlignCenter</set>
             </property>
+            <property name="wordWrap">
+             <bool>true</bool>
+            </property>
            </widget>
           </item>
           <item row="3" column="0">
@@ -1172,6 +1148,9 @@
             </property>
             <property name="alignment">
              <set>Qt::AlignCenter</set>
+            </property>
+            <property name="wordWrap">
+             <bool>true</bool>
             </property>
            </widget>
           </item>
@@ -1484,60 +1463,56 @@
                  </widget>
                 </item>
                 <item>
-                 <layout class="QHBoxLayout" name="horizontalLayout_20">
-                  <item>
-                   <widget class="QCheckBox" name="positiveAltitudeOnlyCheckBox">
-                    <property name="toolTip">
-                     <string>Draw only the part of the graph where altitude is greater than the value given in the right box.</string>
-                    </property>
-                    <property name="text">
-                     <string>Above altitude:</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QSpinBox" name="positiveAltitudeLimitSpinBox">
-                    <property name="maximumSize">
-                     <size>
-                      <width>75</width>
-                      <height>16777215</height>
-                     </size>
-                    </property>
-                    <property name="toolTip">
-                     <string>Altitude limit in degrees</string>
-                    </property>
-                    <property name="alignment">
-                     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                    </property>
-                    <property name="minimum">
-                     <number>-85</number>
-                    </property>
-                    <property name="maximum">
-                     <number>85</number>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <spacer name="horizontalSpacer_18">
-                    <property name="orientation">
-                     <enum>Qt::Horizontal</enum>
-                    </property>
-                    <property name="sizeHint" stdset="0">
-                     <size>
-                      <width>40</width>
-                      <height>20</height>
-                     </size>
-                    </property>
-                   </spacer>
-                  </item>
-                  <item>
-                   <widget class="QPushButton" name="exportAltVsTimePushButton">
-                    <property name="text">
-                     <string>Export graph...</string>
-                    </property>
-                   </widget>
-                  </item>
-                 </layout>
+                 <widget class="QCheckBox" name="positiveAltitudeOnlyCheckBox">
+                  <property name="toolTip">
+                   <string>Draw only the part of the graph where altitude is greater than the value given in the right box.</string>
+                  </property>
+                  <property name="text">
+                   <string>Above altitude:</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QSpinBox" name="positiveAltitudeLimitSpinBox">
+                  <property name="maximumSize">
+                   <size>
+                    <width>75</width>
+                    <height>16777215</height>
+                   </size>
+                  </property>
+                  <property name="toolTip">
+                   <string>Altitude limit in degrees</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                  </property>
+                  <property name="minimum">
+                   <number>-85</number>
+                  </property>
+                  <property name="maximum">
+                   <number>85</number>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <spacer name="horizontalSpacer_18">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>40</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="exportAltVsTimePushButton">
+                  <property name="text">
+                   <string>Export graph...</string>
+                  </property>
+                 </widget>
                 </item>
                </layout>
               </item>
@@ -1622,37 +1597,33 @@
               <item row="1" column="0">
                <layout class="QHBoxLayout" name="horizontalLayout_10">
                 <item>
-                 <layout class="QHBoxLayout" name="horizontalLayout_21">
-                  <item>
-                   <widget class="QCheckBox" name="monthlyElevationPositiveCheckBox">
-                    <property name="toolTip">
-                     <string>Draw only the part of the graph where altitude is greater than the value given in the right box.</string>
-                    </property>
-                    <property name="text">
-                     <string>Above altitude:</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QSpinBox" name="monthlyElevationPositiveLimitSpinBox">
-                    <property name="maximumSize">
-                     <size>
-                      <width>75</width>
-                      <height>16777215</height>
-                     </size>
-                    </property>
-                    <property name="toolTip">
-                     <string>Altitude limit in degrees</string>
-                    </property>
-                    <property name="alignment">
-                     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                    </property>
-                    <property name="maximum">
-                     <number>85</number>
-                    </property>
-                   </widget>
-                  </item>
-                 </layout>
+                 <widget class="QCheckBox" name="monthlyElevationPositiveCheckBox">
+                  <property name="toolTip">
+                   <string>Draw only the part of the graph where altitude is greater than the value given in the right box.</string>
+                  </property>
+                  <property name="text">
+                   <string>Above altitude:</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QSpinBox" name="monthlyElevationPositiveLimitSpinBox">
+                  <property name="maximumSize">
+                   <size>
+                    <width>75</width>
+                    <height>16777215</height>
+                   </size>
+                  </property>
+                  <property name="toolTip">
+                   <string>Altitude limit in degrees</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                  </property>
+                  <property name="maximum">
+                   <number>85</number>
+                  </property>
+                 </widget>
                 </item>
                 <item>
                  <widget class="QSlider" name="monthlyElevationTime">
@@ -1908,6 +1879,9 @@
                   <property name="alignment">
                    <set>Qt::AlignCenter</set>
                   </property>
+                  <property name="wordWrap">
+                   <bool>true</bool>
+                  </property>
                  </widget>
                 </item>
                 <item row="2" column="2">
@@ -2007,36 +1981,51 @@
               <property name="bottomMargin">
                <number>4</number>
               </property>
+              <item row="0" column="0" colspan="2">
+               <widget class="QChartView" name="lunarElongationChartView"/>
+              </item>
               <item row="2" column="0">
-               <layout class="QHBoxLayout" name="horizontalLayout_18">
-                <item>
-                 <layout class="QHBoxLayout" name="horizontalLayout_19">
-                  <item>
-                   <widget class="QLabel" name="lunarElongationLimitLabel">
-                    <property name="text">
-                     <string>Angular distance limit, degrees:</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QSpinBox" name="lunarElongationLimitSpinBox">
-                    <property name="maximumSize">
-                     <size>
-                      <width>100</width>
-                      <height>16777215</height>
-                     </size>
-                    </property>
-                    <property name="alignment">
-                     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                    </property>
-                    <property name="maximum">
-                     <number>180</number>
-                    </property>
-                   </widget>
-                  </item>
-                 </layout>
+               <layout class="QGridLayout" name="gridLayout_25">
+                <item row="1" column="0">
+                 <widget class="QLabel" name="lunarElongationLimitLabel">
+                  <property name="text">
+                   <string>Angular distance limit:</string>
+                  </property>
+                 </widget>
                 </item>
-                <item>
+                <item row="0" column="0" colspan="4">
+                 <widget class="QLabel" name="lunarElongationNote">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                  <property name="text">
+                   <string>Important note: this tool works on Earth only!</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignCenter</set>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="1">
+                 <widget class="QSpinBox" name="lunarElongationLimitSpinBox">
+                  <property name="maximumSize">
+                   <size>
+                    <width>100</width>
+                    <height>16777215</height>
+                   </size>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                  </property>
+                  <property name="maximum">
+                   <number>180</number>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="2">
                  <spacer name="horizontalSpacer_16">
                   <property name="orientation">
                    <enum>Qt::Horizontal</enum>
@@ -2049,36 +2038,7 @@
                   </property>
                  </spacer>
                 </item>
-                <item>
-                 <widget class="QLabel" name="lunarElongationNote">
-                  <property name="sizePolicy">
-                   <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
-                    <horstretch>0</horstretch>
-                    <verstretch>0</verstretch>
-                   </sizepolicy>
-                  </property>
-                  <property name="text">
-                   <string>Important note: this tool works on Earth only!</string>
-                  </property>
-                  <property name="alignment">
-                   <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <spacer name="horizontalSpacer_17">
-                  <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
-                  </property>
-                  <property name="sizeHint" stdset="0">
-                   <size>
-                    <width>40</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                 </spacer>
-                </item>
-                <item>
+                <item row="1" column="3">
                  <widget class="QPushButton" name="exportLunarElongationPushButton">
                   <property name="text">
                    <string>Export graph...</string>
@@ -2086,9 +2046,6 @@
                  </widget>
                 </item>
                </layout>
-              </item>
-              <item row="0" column="0" colspan="2">
-               <widget class="QChartView" name="lunarElongationChartView"/>
               </item>
              </layout>
             </widget>
@@ -2892,6 +2849,9 @@
                 </property>
                 <property name="alignment">
                  <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                </property>
+                <property name="wordWrap">
+                 <bool>true</bool>
                 </property>
                </widget>
               </item>

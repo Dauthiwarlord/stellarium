@@ -535,6 +535,13 @@ QString Planet::getInfoString(const StelCore* core, const InfoStringGroup& flags
 			oss << QString("%1: <b>%2</b><br/>").arg(q_("Type"), q_(getPlanetTypeString()));		
 	}
 
+	if (getPlanetType()==PlanetType::isObserver)
+	{
+		// Do not display meaningless data for observers!
+		postProcessInfoString(str, flags);
+		return str;
+	}
+
 	if (flags&Magnitude)
 	{
 		static const QMap<ApparentMagnitudeAlgorithm, int>decMap={
@@ -4657,18 +4664,19 @@ void Planet::drawOrbit(const StelCore* core)
 
 bool Planet::hasValidPositionalData(const double JDE, const PositionQuality purpose) const
 {
-    if ((pType<isObserver) || (englishName=="Pluto"))
-		return true;
-	else if (orbitPtr && pType>=isArtificial)
-	{
-		switch (purpose) {
+    if ((pType<=isObserver) || (englishName=="Pluto"))
+	    return true;
+    else if (orbitPtr && pType>=isArtificial)
+    {
+	    switch (purpose)
+	    {
 		    case Position:
-			return static_cast<KeplerOrbit*>(orbitPtr)->objectDateValid(JDE);
+			    return static_cast<KeplerOrbit*>(orbitPtr)->objectDateValid(JDE);
 		    case OrbitPlotting:
-			return static_cast<KeplerOrbit*>(orbitPtr)->objectDateGoodEnoughForOrbits(JDE);
-		}
-	}
-	return false;
+			    return static_cast<KeplerOrbit*>(orbitPtr)->objectDateGoodEnoughForOrbits(JDE);
+	    }
+    }
+    return false;
 }
 
 Vec2d Planet::getValidPositionalDataRange(const PositionQuality purpose) const
